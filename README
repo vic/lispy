@@ -1,0 +1,15 @@
+Lispy is sexpy Ruby.
+
+Lispy is a lisp dialect resembling Ruby sexp. Actually it's almost ruby's sexp disguised as lisp. 
+
+The idea is this: 
+  Given a ruby program, feed it to a parser producing lispy (redleaf). 
+    Because lispy is just ruby-sexp it should be really fast to create a lispy 
+    expression from a sexp. 
+  Optionally allow another lispy or ruby program to modify the lispy expression. 
+    In this step it might be possible to modify the original ruby program by 
+    working on its lispy representation. Just like lisp-macros do.
+  Finally convert the lispy expression to either: 
+    - ruby's sexp that can be later compiled to bytecode (rubinius)
+    - ruby code that can be interpreted directly.
+  
