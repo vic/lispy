@@ -1,0 +1,115 @@
+module RedLeaf::Lispy
+  grammar Grammar
+    rule program
+       expr*
+    end
+
+    rule list
+      '(' (expr / space)* ')'
+    end
+
+    rule expr
+      atom /
+      list
+    end
+
+    rule atom
+      literal /
+      name / 
+      dot_name / 
+      dot /
+      sharp
+    end
+
+    rule dot
+      '.'
+    end
+
+    rule dot_name
+      dot name
+    end
+
+    rule sharp
+      '#'
+    end
+
+    rule literal
+      nil /
+      float /
+      long /
+      true /
+      false / 
+      symbol / 
+      string / 
+      nthref /
+      gvar /
+      cvar /
+      ivar
+    end
+
+    rule non_space
+     !(!' ' .)
+    end
+
+    rule nthref 
+      '$' [0-9]+
+    end
+ 
+    rule gvar
+      '$' name
+    end
+
+    rule cvar
+      '@' '@' name
+    end
+
+    rule ivar
+      '@' name
+    end
+
+    rule nil
+      'nil'
+    end
+   
+    rule true
+      'true'
+    end
+
+    rule false
+      'false'
+    end
+
+    rule float
+       [+-]? [0-9]+ '.' [0-9]+ ([eE] [+-]? [0-9]+)?
+    end
+
+    rule long
+      [+-]? [0-9]+
+    end
+
+    rule symbol
+      ':' [A-Za-z0-9_]+
+    end
+
+    rule string
+      '"' (!'"' . / '\"')* '"'
+    end
+   
+    rule name
+       [a-z_] [A-Za-z0-9_+?!=:-]+
+    end
+
+    rule space
+       [ \t]+
+    end
+  
+    rule nl
+       [\n\f\r]+
+    end
+
+    rule space_nl
+       (space / nl)*
+    end
+
+  end
+end
