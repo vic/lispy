@@ -121,6 +121,12 @@ module Lispy
     def to_s
       '(' + to_a.join(' ') + ')'
     end
+
+    def to_a
+      super.map { |a| List === a ? a.to_a : a }
+    end
+
+    alias_method :inspect, :to_s
   end
 
   # (lambda <arguments> <body...>)
