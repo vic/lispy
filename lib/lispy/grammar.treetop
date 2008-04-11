@@ -1,4 +1,4 @@
-module RedLeaf::Lispy
+module Lispy
   grammar Grammar
     rule program
        expr*
